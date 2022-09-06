@@ -9,4 +9,8 @@ export class WeatherDataService {
   getWeather(city:string){
     return this.http.get(`https://api.weatherapi.com/v1/current.json?key=fbe103d4de7a4d7897665643220509&q=`+city+`&aqi=yes`);
   }
+
+  getForecast(city:string){
+    return this.http.get(`https://api.weatherapi.com/v1/forecast.json?key=fbe103d4de7a4d7897665643220509&q=`+city+`&days=3&aqi=yes&alerts=yes`);
+  }
 }

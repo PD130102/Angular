@@ -26,4 +26,10 @@ export class WeatherDisplayComponent implements OnInit {
       console.log(this.weatherData);
     })
   }
+  getForecastData(city:string){
+    this.data.getForecast(city).subscribe((data)=>{
+      this.weatherData = data;
+      console.log(this.weatherData);
+    })
+  }
 }
