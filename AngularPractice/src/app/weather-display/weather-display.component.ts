@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherDataService } from '../services/weather-data.service';
-
 @Component({
   selector: 'app-weather-display',
   templateUrl: './weather-display.component.html',
@@ -12,11 +11,12 @@ export class WeatherDisplayComponent implements OnInit {
   public temperature :any;
   public pressure:any;
   public humidity:any;
+  public forecastData:any;
+  public maxtemp!: any[];
   constructor(private data : WeatherDataService) { }
 
   ngOnInit(): void {
   }
-  
   getWeatherData(city:string){
     this.data.getWeather(city).subscribe((data)=>{
       this.weatherData = data;
@@ -28,8 +28,10 @@ export class WeatherDisplayComponent implements OnInit {
   }
   getForecastData(city:string){
     this.data.getForecast(city).subscribe((data)=>{
-      this.weatherData = data;
-      console.log(this.weatherData);
+      this.forecastData = data;
+      this.maxtemp = this.forecastData.forecast.forecastday[0].day.maxtemp_c;
+      console.log(this.forecastData);
     })
   }
+  
 }
